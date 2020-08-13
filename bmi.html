@@ -1,0 +1,130 @@
+<html>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="stylesheet1.css">
+<script>
+function calbmi()
+{
+var gen;
+var w=parseFloat(document.getElementById('weight').value);
+var h=parseFloat(document.getElementById('height').value);
+var g=document.getElementById('gendername');
+if(document.getElementById('male').checked==true)
+{gen="MALE";}
+else {
+  gen="FEMALE";
+}
+if(w&&h&&((document.getElementById('male').checked==true)||(document.getElementById('female').checked==true)))
+{
+var bmi=w/(h*h);
+var bmi1=document.getElementById('bmi');
+var res=document.getElementById('result');
+bmi1.value=(bmi.toPrecision(4)).toString();
+}
+else {
+  alert("Please Enter valid values")
+}
+if(bmi<=17.5)
+{
+  res.value="SEVERELY UNDERWEIGHT";
+}
+else if(bmi>17.5&&bmi<=18.5)
+{
+  res.value="UNDERWEIGHT";
+}
+else if(bmi>18.5&&bmi<=25)
+{
+  res.value="OPTIMAL";
+}
+else if(bmi>25&&bmi<=30)
+{
+  res.value="OVERWEIGHT";
+}
+else if(bmi>30&&bmi<=40)
+{
+  res.value="OBESE";
+}
+else {
+  res.value="SEVERELY OBESE";
+}
+res.value=res.value+" "+gen;
+g.value="Check out the graph to your left for detailed values";
+localStorage.setItem('gender',gen);
+localStorage.setItem('weight',w);
+localStorage.setItem('height',h);
+}
+function nextfun()
+{
+  var w=parseFloat(document.getElementById('weight').value);
+  var h=parseFloat(document.getElementById('height').value);
+  var g=document.getElementById('gendername');
+  if(w&&h&&g)
+  { location.replace("chart.html");}
+ else {
+   var ans=window.confirm("Lets find out your BMI first?");
+   if(!ans)
+   {
+      location.replace("chart.html");
+   }
+ }
+}
+</script>
+<body>
+  <div class="wrapper">
+  <div class="nav">
+
+
+    <div>
+  <img src="icon.jpg" class="image1">
+  <font color="grey">Fi-tiCan</font>
+</div>
+
+      <div><font color="grey">Can you see your feet?</font></div>
+
+    <div>
+    <a href="index.html">HOME</a>
+    </div>
+    <div>
+    <a href="bmi.html">BMI</a>
+    </div>
+    <div>
+    <a href="chart.html">CHART</a>
+    </div>
+    <div>
+    <a href="trainer.html">TRAINER</a>
+    </div>
+ </div>
+<div class="main">
+  <div class="pic">
+    <img src="bmichart.jpg" class="bmiimage"><br>
+  </div>
+  <div class="details">
+    <form>
+      <font color="orange">
+      Gender:<input type="radio" name="genderanswer" id="male">Male <input type="radio" name="genderanswer" id="female">Female<br><br>
+      Weight:<input type="text" name="weight" id="weight" placeholder="Enter your weight in Kilograms"><br><br>
+      Height :<input type="text" name="height" id="height" Placeholder="Enter your height in Meters"><br><br>
+      <input type="button" class="button" value="Calculate" onclick="calbmi()" button style="position: relative; left: 10%; right: 20%; bottom:25%;">
+      <br><br>
+      BMI       :<input type="text" style="font-size:15pt" style="color:orange" name="bmiresult" id="bmi" readonly>
+      <br>
+      <input type="text" name="result" id="result" readonly><br>
+      <input type="text" name="gen" id="gendername" text style="position:relative;left:0%;" readonly>
+      <br><br>
+      <input type="button" class="button" value="LETS MOVE!" onclick="nextfun()" button style="position: relative; left: 10%;">
+ </div>
+</div>
+  <div class="footer">
+  <div>
+    <p style="text-align:left;"><font color="grey">21st Bolognate<br>Bangalore,India</font></p>
+  </div>
+  <div>
+    <p style="text-align:center;"><font color="grey">FitnessWannabe.com<br>Subject to copyright</font></p>
+  </div>
+  <div>
+    <p style="text-align:right;"><font color="grey">CONTACT US:<br>
+    +91 8553780989</font></p>
+  </div>
+</div>
+
+</body>
+</html>
